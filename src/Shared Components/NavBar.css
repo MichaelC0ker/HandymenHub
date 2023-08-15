@@ -1,0 +1,87 @@
+/* Navbar.css */
+
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+}
+
+/* Navbar brand/logo */
+.navbar-logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Navbar toggle button */
+.navbar-toggle {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+}
+
+.navbar-toggle.active {
+  color: orange;
+}
+
+/* Navbar links container */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+/* Individual navbar link */
+.navbar-link {
+  margin: 0 15px;
+}
+
+/* Open state for the navbar */
+.navbar-links.open {
+  display: flex;
+  flex-direction: column;
+  background-color: #444;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-link a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-links.open {
+    position: static;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .navbar-link {
+    margin: 10px 0;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+}
