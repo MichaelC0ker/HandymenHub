@@ -6,7 +6,7 @@ interface JobTileProps {
   title: string;
   slogan: string;
   description: string;
-  price: string;
+  price: number;
   rating: number;
   verified: boolean;
 }
@@ -22,34 +22,34 @@ const JobTile: React.FC<JobTileProps> = ({
 }) => {
 
   return (
-    <div className="job-tile">
+    <main className="job-tile">
 
-      <div className="job-image">
+      <section className="job-image">
         <img src={image} alt={title} />
         <button className="book-button">Book/Hire</button>
-      </div>
+      </section>
 
-      <div className="job-details">
+      <section className="job-details">
         <h2>{title}
-        {verified && <span className="verified-icon">✅</span>} 
+          {verified && <span className="verified-icon">✅</span>}
         </h2>
         <h3>{slogan}</h3>
         <p>{description}</p>
-      </div>
+      </section>
 
-      
-      <div className="job-rating">
-    
+
+      <section className="job-rating">
+
         <h3>R{price}/h</h3>
-      <div className="job-stars">
-        {Array.from({ length: rating }, (_, index) => (
-          <span key={index} className="star-icon">
-            ⭐
-          </span>
-        ))}
-        </div>
-      </div>
-    </div>
+        <card className="job-stars">
+          {Array.from({ length: rating }, (_, index) => (
+            <span key={index} className="star-icon">
+              ⭐
+            </span>
+          ))}
+        </card>
+      </section>
+    </main>
   );
 };
 

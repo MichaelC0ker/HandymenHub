@@ -87,13 +87,13 @@ const Jobs: React.FC = () => {
   ];
 
   return (
-    <div className="jobs-container">
-      <div className="job-tiles">
+    <main className="jobs-container">
+      <section className="job-tiles">
         {handymanJobs.map(job => (
           <JobTile key={job.id} title={job.title} image={job.image} slogan={job.slogan} description={job.description} rating={job.rating} price={job.price} verified={job.verified}/>
         ))}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
