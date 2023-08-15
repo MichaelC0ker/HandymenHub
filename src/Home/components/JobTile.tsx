@@ -41,13 +41,13 @@ const JobTile: React.FC<JobTileProps> = ({
       <section className="job-rating">
 
         <h3>R{price}/h</h3>
-        <card className="job-stars">
+        <div className="job-stars">
           {Array.from({ length: rating }, (_, index) => (
             <span key={index} className="star-icon">
               ⭐
             </span>
           ))}
-        </card>
+        </div>
       </section>
     </main>
   );

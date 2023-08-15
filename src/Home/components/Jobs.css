@@ -12,22 +12,23 @@
   flex-direction: column;
   align-items: flex-start;
   align-items: center;
+  padding-left: 36px;
 }
 
 .job-image img {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
   border-radius: 5px;
 }
 
 .book-button {
   margin-top: 10px;
-  padding: 5px 10px;
+  padding: 5px 25px;
   background-color: #3498db;
   color: white;
   border: none;
-  border-radius: 3px;
+  border-radius: 12px;
   cursor: pointer;
 }
 
