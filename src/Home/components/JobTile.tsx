@@ -20,13 +20,26 @@ const JobTile: React.FC<JobTileProps> = ({
   rating,
   verified
 }) => {
+  const handleBookButtonClick = () => {
+    const jobDetails = {
+      image,
+      title,
+      slogan,
+      description,
+      price,
+      rating,
+      verified
+    };
+
+    console.log("Clicked Job Details:", jobDetails);
+  };
 
   return (
     <main className="job-tile">
 
       <section className="job-image">
         <img src={image} alt={title} />
-        <button className="book-button">Book/Hire</button>
+        <button className="book-button" onClick={handleBookButtonClick}>Book</button>
       </section>
 
       <section className="job-details">
