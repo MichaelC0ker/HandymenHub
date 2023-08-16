@@ -6,6 +6,7 @@ interface JobTileProps {
   title: string;
   slogan: string;
   description: string;
+  category: string
   price: number;
   rating: number;
   verified: boolean;
@@ -18,7 +19,9 @@ const JobTile: React.FC<JobTileProps> = ({
   description,
   price,
   rating,
+  category,
   verified
+  
 }) => {
   const handleBookButtonClick = () => {
     const jobDetails = {
@@ -27,6 +30,7 @@ const JobTile: React.FC<JobTileProps> = ({
       slogan,
       description,
       price,
+      category,
       rating,
       verified
     };
@@ -38,6 +42,7 @@ const JobTile: React.FC<JobTileProps> = ({
     <main className="job-tile">
 
       <section className="job-image">
+        <h2>{category}</h2>
         <img src={image} alt={title} />
         <button className="book-button" onClick={handleBookButtonClick}>Book</button>
       </section>
