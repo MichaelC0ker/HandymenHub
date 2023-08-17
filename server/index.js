@@ -3,7 +3,9 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const bookingRouter = require("./routes/bookingRoutes");
+const advertsRouter = require("./routes/advertsRoutes");
+const userRouter = require("./routes/userRoutes");
+
 
 const app = express();
 
@@ -23,7 +25,9 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT;
 
-app.use("/bookings", bookingRouter);
+app.use("/adverts", advertsRouter);
+app.use("/users", userRouter);
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
