@@ -77,7 +77,6 @@ class AuthMiddleware {
         const pem = jwkToPem(jwk);
         pems[key_id] = pem;
       }
-      //console.log("got PEMS");
     } catch (error) {
       console.log(error);
       console.log("Error! Unable to download JWKs");
