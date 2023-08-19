@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import { Pool } from "pg";
+import fs from "fs";
 
 const DB_USER: string = process.env.DB_USER as string;
 const DB_HOST: string = process.env.DB_HOST as string;
@@ -13,6 +14,9 @@ const pool = new Pool({
   database: DB_DATABASE,
   password: DB_PASSWORD,
   port: DB_PORT,
+  ssl: {
+    ca: fs.readFileSync("./src/config/certs/af-south-1-bundle.pem").toString(),
+  },
 });
 
 export default pool;
