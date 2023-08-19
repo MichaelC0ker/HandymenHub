@@ -1,10 +1,8 @@
 import dotenv from "dotenv";
 
 import App from "./app";
-
-import HomeController from "./controller/home.controller";
-import ProtectedController from "./controller/protected.controller";
-import BookingController from "./controller/booking.controller";
+import UsersController from "./controller/users.controller";
+import AdvertsController from "./controller/adverts.controller";
 
 import bodyParser from "body-parser";
 
@@ -20,9 +18,8 @@ const corsOptions = {
 const app = new App({
   port: Number(port),
   controllers: [
-    new HomeController(),
-    new ProtectedController(),
-    new BookingController(),
+    new UsersController(),
+    new AdvertsController()
   ],
   middleWares: [
     bodyParser.json(),
