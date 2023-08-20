@@ -15,6 +15,7 @@ interface HandymanJob {
   slogan: string;
   description: string;
   rating: number;
+  category: string;
   price: number;
   verified: boolean;
 }
@@ -25,6 +26,7 @@ const Jobs: React.FC = () => {
       id: 1,
       title: 'Max Plumbing',
       image: Plumbing,
+      category:'Plumbing',
       rating: 4,
       price: 250,
       verified:true,
@@ -36,6 +38,7 @@ const Jobs: React.FC = () => {
       id: 2,
       title: 'Enzo Electronics',
       image: electrical,
+      category: 'Electrical Repairs',
       rating: 5,
       price: 250,
       verified:true,
@@ -47,6 +50,7 @@ const Jobs: React.FC = () => {
       id: 3,
       title: 'Ikea',
       image: carpentry,
+      category: 'Carpentry',
       rating: 4,
       price: 250,
       verified:true,
@@ -58,6 +62,7 @@ const Jobs: React.FC = () => {
       id: 4,
       title: '@Canvas',
       image: painting,
+      category: 'Painting and Decorating',
       rating: 1,
       price: 250,
       verified:false,
@@ -68,6 +73,7 @@ const Jobs: React.FC = () => {
       id: 5,
       title: 'Pool and Works',
       image: pool,
+      category: 'Pool Work',
       rating: 3,
       price: 250,
       verified:true,
@@ -78,6 +84,7 @@ const Jobs: React.FC = () => {
       id: 6,
       title: 'Daily Sun',
       image: gardening,
+      category: 'Gardening',
       rating: 2,
       price: 250,
       verified:true,
@@ -90,7 +97,7 @@ const Jobs: React.FC = () => {
     <main className="jobs-container">
       <section className="job-tiles">
         {handymanJobs.map(job => (
-          <JobTile key={job.id} title={job.title} image={job.image} slogan={job.slogan} description={job.description} rating={job.rating} price={job.price} verified={job.verified}/>
+          <JobTile key={job.id} title={job.title} image={job.image} slogan={job.slogan} description={job.description} rating={job.rating} price={job.price} verified={job.verified} category={job.category}/>
         ))}
       </section>
     </main>
