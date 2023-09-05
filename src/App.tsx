@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+import { Amplify } from "aws-amplify";
+import awsExports from "./aws-exports";
+
+import { Authenticator, withAuthenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
 
 function App() {
+  // TODO: replace with env variables
+  Amplify.configure({
+    Auth: {
+      region: awsExports.REGION,
+      userPoolId: awsExports.USER_POOL_ID,
+      userPoolWebClientId: awsExports.USER_POOL_APP_CLIENT_ID,
+    },
+  });
+
+  const GetAuthComponent = (props: any) => {
+    console.log(props);
+    return (
+      <div>
+        <p>Welcome {props.user?.attributes?.name}</p>
+        <button onClick={props.signOut}>Sign out</button>
+      </div>
+    );
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Authenticator signUpAttributes={["name"]}>
+      <GetAuthComponent />
+    </Authenticator>
   );
 }
 
