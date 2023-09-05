@@ -7,6 +7,9 @@ import awsExports from "./aws-exports";
 
 import { Authenticator, withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
+import "./App.css";
+import Home from "./Home/Home";
+import Booking from "./Booking/Booking";
 
 function App() {
   // TODO: replace with env variables
@@ -29,9 +32,13 @@ function App() {
   };
 
   return (
-    <Authenticator signUpAttributes={["name"]}>
-      <GetAuthComponent />
-    </Authenticator>
+    <>
+      <Authenticator signUpAttributes={["name"]}>
+        <GetAuthComponent />
+      </Authenticator>
+      <Home />
+      <Booking />
+    </>
   );
 }
 
