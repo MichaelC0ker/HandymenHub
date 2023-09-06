@@ -24,7 +24,10 @@ function App() {
 
   const GetAuthComponent = (props: any) => {
     Auth.currentAuthenticatedUser().then((res) => {
-      console.log(res.signInUserSession.getAccessToken().getJwtToken());
+      localStorage.setItem(
+        "JWT",
+        res.signInUserSession.getAccessToken().getJwtToken()
+      );
     });
     return (
       <>
