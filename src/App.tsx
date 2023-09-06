@@ -1,19 +1,26 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-
 import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
-
 import { Authenticator, withAuthenticator } from "@aws-amplify/ui-react";
 import { Auth } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import "./App.css";
 import Home from "./Home/Home";
 import Booking from "./Booking/Booking";
+import Navbar from "./Shared Components/NavBar";
 
 function App() {
-  // TODO: replace with env variables
+  let component: JSX.Element | null = null;
+
+  switch(window.location.pathname){
+    case '/':
+      component = <Home/>
+      break
+    case '/post':
+      component = <Booking/>
+      break
+  }
   Amplify.configure({
     Auth: {
       region: awsExports.REGION,
@@ -31,8 +38,8 @@ function App() {
     });
     return (
       <>
-        <Home />
-        <Booking />
+      <Navbar/>
+        {component}
       </>
     );
   };
