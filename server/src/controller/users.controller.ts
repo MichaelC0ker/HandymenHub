@@ -18,6 +18,7 @@ class UserController {
         this.router.use(this.authMiddleware.verifyToken);
         this.router.get("/", this.allUsers);
         this.router.get("/emails", this.emails);
+        this.router.get("/:guid", this.getUserID);
         this.router.get("/userFavourites/:userID", this.userFavourites);
 
         this.router.post("/", this.createUser);
@@ -38,6 +39,16 @@ class UserController {
       emails = async (req: Request, res: Response) => {
         try {
           const results = await db.query(`SELECT email from users`);
+          res.status(200).send({ data: results.rows });
+        } catch (err: any) {
+          console.error("Error executing query", err.stack);
+          res.status(500).json({ error: "Something went wrong" });
+        }
+      };
+
+      getUserID = async (req: Request, res: Response) => {
+        try {
+          const results = await db.query("SELECT user_id from users where guid=$1;",[req.params.guid]);
           res.status(200).send({ data: results.rows });
         } catch (err: any) {
           console.error("Error executing query", err.stack);

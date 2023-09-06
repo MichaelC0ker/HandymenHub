@@ -33,7 +33,6 @@ class AuthMiddleware {
       resp.status(401).end();
       return;
     }
-
     let decodedJwt: any = jwt.decode(token, { complete: true });
     if (decodedJwt === null) {
       resp.status(401).json({ error: "Invalid jwt token." }).end();
