@@ -7,18 +7,18 @@ import { Auth } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import "./App.css";
 import Home from "./Home/Home";
-import Booking from "./Booking/Booking";
 import Navbar from "./Shared Components/NavBar";
+import PostDetails from "./ServiceUpload/PostDetails";
 
 function App() {
   let component: JSX.Element | null = null;
 
   switch(window.location.pathname){
-    case '/home':
+    case '':
       component = <Home/>
       break
     case '/post':
-      component = <Booking/>
+      component = <PostDetails/>
       break
   }
   Amplify.configure({
@@ -39,6 +39,7 @@ function App() {
     return (
       <>
       <Navbar/>
+      <Home/>
         {component}
       </>
     );
