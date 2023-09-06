@@ -14,7 +14,7 @@ function App() {
   let component: JSX.Element | null = null;
 
   switch(window.location.pathname){
-    case '/':
+    case '/home':
       component = <Home/>
       break
     case '/post':

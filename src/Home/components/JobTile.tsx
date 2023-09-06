@@ -1,5 +1,5 @@
 import React from "react";
-import "./Jobs.css"; // Make sure to have the CSS file for the updated styles
+import "./Jobs.css"; 
 
 interface JobTileProps {
   image: string;
