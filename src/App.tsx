@@ -6,6 +6,7 @@ import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
 
 import { Authenticator, withAuthenticator } from "@aws-amplify/ui-react";
+import { Auth } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import "./App.css";
 import Home from "./Home/Home";
@@ -22,12 +23,14 @@ function App() {
   });
 
   const GetAuthComponent = (props: any) => {
-    console.log(props);
+    Auth.currentAuthenticatedUser().then((res) => {
+      console.log(res.signInUserSession.getAccessToken().getJwtToken());
+    });
     return (
-      <div>
-        <p>Welcome {props.user?.attributes?.name}</p>
-        <button onClick={props.signOut}>Sign out</button>
-      </div>
+      <>
+        <Home />
+        <Booking />
+      </>
     );
   };
 
@@ -36,8 +39,6 @@ function App() {
       <Authenticator signUpAttributes={["name"]}>
         <GetAuthComponent />
       </Authenticator>
-      <Home />
-      <Booking />
     </>
   );
 }
