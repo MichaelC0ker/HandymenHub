@@ -62,7 +62,7 @@ const Booking: React.FC = () => {
         selected={taskDate}
         onChange={handleDateChange}
         placeholderText="Input date when task should be performed"
-        minDate={new Date()} // Prevent picking previous days
+        minDate={new Date()} 
       />
       <textarea
         className="textarea"

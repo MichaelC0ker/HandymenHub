@@ -1,35 +1,37 @@
-import React, { useState } from 'react';
-import './NavBar.css';
+import React from "react";
+import "./NavBar.css";
 
 interface NavbarProps {
-  links: { text: string; url: string }[];
+  setComponent: (arg0: string) => void;
+  signOut: any;
 }
 
-interface NavbarState {
-  isOpen: boolean;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ links }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+const Navbar: React.FC<NavbarProps> = ({ setComponent, signOut }) => {
+  const handleLogout = () => {
+    setComponent("logout");
   };
 
   return (
-    <nav className="navbar">
-      <div className="navbar-brand">
-        <span className="navbar-logo">Task Masters</span>
-        <button className={`navbar-toggle ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
-          Menu
-        </button>
-      </div>
-      <ul className={`navbar-links ${isOpen ? 'open' : ''}`}>
-        {links.map((link, index) => (
-          <li key={index} className="navbar-link">
-            <a href={link.url}>{link.text}</a>
-          </li>
-        ))}
+    <nav className="nav">
+      <button onClick={() => setComponent("home")} className="site-title">
+        Task Master
+      </button>
+      <ul>
+        <li>
+          <button onClick={() => setComponent("")} className="site-title">
+            My Services
+          </button>
+        </li>
+        <li>
+          <button onClick={() => setComponent("post")} className="site-title">
+            Post Details
+          </button>
+        </li>
+        <li>
+          <button className="site-title" onClick={signOut}>
+            Log Out
+          </button>
+        </li>
       </ul>
     </nav>
   );
