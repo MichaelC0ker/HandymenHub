@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
@@ -11,16 +11,26 @@ import Navbar from "./Shared Components/NavBar";
 import PostDetails from "./ServiceUpload/PostDetails";
 
 function App() {
-  let component: JSX.Element | null = null;
+  const [component, setComponent] = useState(<Home />);
 
-  switch(window.location.pathname){
-    case '':
-      component = <Home/>
-      break
-    case '/post':
-      component = <PostDetails/>
-      break
-  }
+  const navBarSelector = (s: string) => {
+    switch (s) {
+      case "home":
+        setComponent(<Home />);
+        break;
+      case "services":
+        break;
+      case "post":
+        setComponent(<PostDetails />);
+        break;
+      case "logout":
+        setComponent(<Home />);
+        break;
+      default:
+        setComponent(<Home />);
+    }
+  };
+
   Amplify.configure({
     Auth: {
       region: awsExports.REGION,
@@ -38,8 +48,7 @@ function App() {
     });
     return (
       <>
-      <Navbar/>
-      <Home/>
+        <Navbar setComponent={navBarSelector} signOut={props.signOut} />
         {component}
       </>
     );

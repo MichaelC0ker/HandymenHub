@@ -1,33 +1,36 @@
 import React from "react";
 import "./NavBar.css";
 
-interface NavbarProps {}
+interface NavbarProps {
+  setComponent: (arg0: string) => void;
+  signOut: any;
+}
 
-const Navbar: React.FC<NavbarProps> = () => {
+const Navbar: React.FC<NavbarProps> = ({ setComponent, signOut }) => {
   const handleLogout = () => {
-    localStorage.clear();
+    setComponent("logout");
   };
 
   return (
     <nav className="nav">
-      <a href="/home" className="site-title">
+      <button onClick={() => setComponent("home")} className="site-title">
         Task Master
-      </a>
+      </button>
       <ul>
         <li>
-          <a href="/services" className="site-title">
+          <button onClick={() => setComponent("")} className="site-title">
             My Services
-          </a>
+          </button>
         </li>
         <li>
-          <a href="/post" className="site-title">
+          <button onClick={() => setComponent("post")} className="site-title">
             Post Details
-          </a>
+          </button>
         </li>
         <li>
-          <a href="/login" className="site-title" onClick={handleLogout}>
+          <button className="site-title" onClick={signOut}>
             Log Out
-          </a>
+          </button>
         </li>
       </ul>
     </nav>
