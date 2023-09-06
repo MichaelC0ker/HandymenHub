@@ -4,6 +4,7 @@ import { ContactForm } from "./ContactForm"
 import { ServiceDetailForm } from "./ServiceDetailForm";
 import { useMultiStepForm } from "./useMultiStepForm"
 import React from "react";
+import './ServiceInputPageStyling.css';
 
 type FormData = {
   serviceName: string,
@@ -46,19 +47,11 @@ function ServiceInput() {
 
   return (
     <div
-      style={{
-        position: "relative",
-        background: "white",
-        border: "1px solid black",
-        padding: "2rem",
-        margin: "1rem",
-        borderRadius: ".5rem",
-        fontFamily: "Arial"
-      }}>
+      id="service-form">
       <form onSubmit={onSubmit}>
-        <div style={{ position: "absolute", top: ".5rem", right: ".5rem" }}>{currentStepIndex + 1}/{steps.length}</div>
+        <div id="form-lable">{currentStepIndex + 1}/{steps.length}</div>
         {currentStep}
-        <div style={{ marginTop: "1rem", display: "flex", gap: ".5rem", justifyContent: "flex-end" }}>
+        <div id="button-container">
           {!isFirstStep && <button onClick={back} type="button">Back</button>}
           {!isLastStep && <button type="submit">Next</button>}
           {isLastStep && <button onClick={submit} type="button">Submit</button>}
