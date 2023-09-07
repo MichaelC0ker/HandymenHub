@@ -5,6 +5,16 @@
   justify-content: center;
   background-color: #f4f4f4;
   font-family: Arial, sans-serif;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+form{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 16px;
+  background-color: snow;
 }
 
 .heading {
@@ -12,52 +22,29 @@
   margin-bottom: 20px;
 }
 
-.textarea {
-  width: 80%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  text-align: center;
-  border-radius: 5px;
-  margin-bottom: 35px;
-  border-radius: 12px;
-}
-
-.datepicker {
-  width: 80%;
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 15px;
 }
 
-
-/* Rest of your CSS styles */
-
-.file-input {
-  display: block;
-  margin: 10px auto;
+.input{
+  width: 30px;
 }
 
-.file-input input[type="file"] {
-  display: none;
-}
-
-.file-input label {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-bottom: 15px;
 }
 
-.file-input label:hover {
-  background-color: #0056b3;
-}
-
-.button {
+button.button {
   padding: 10px 20px;
   background-color: #007bff;
   color: white;
@@ -68,7 +55,15 @@
   margin-bottom: 20px;
 }
 
-.button:hover {
+button.button:hover {
   background-color: #0056b3;
 }
 
+textarea#taskDescription {
+  height: 150px; 
+  resize: vertical; 
+}
+
+input#hours {
+  width: 80%; 
+}

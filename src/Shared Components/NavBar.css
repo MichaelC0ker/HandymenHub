@@ -49,3 +49,8 @@ body {
 .nav li:hover {
   background-color: #777;
 }
+button{
+  background: none;
+  border: none;
+  color: white;
+}

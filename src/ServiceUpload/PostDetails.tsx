@@ -1,79 +1,112 @@
-import React, { useState } from 'react';
-import './PostDetails.css';
+import React, { useState } from "react";
+import "./PostDetails.css"; // Import your CSS file
 
-const PostDetails: React.FC = () => {
-  const [taskDescription, setTaskDescription] = useState('');
-  const [providerName, setproviderName] = useState('');
-  const [cellPhone, setcellPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [hours, setHours] = useState('');
+interface PostDetailsProps {}
 
-  const handleTaskDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTaskDescription(event.target.value);
+const PostDetails: React.FC<PostDetailsProps> = () => {
+  const [formData, setFormData] = useState({
+    providerName: "",
+    taskDescription: "",
+    cellPhone: "",
+    email: "",
+    hours: "",
+    serviceType: "Water",
+  });
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleProviderChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setproviderName(event.target.value);
+  const handleServiceTypeChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const { value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      serviceType: value,
+    }));
   };
 
-  
-  const handleContactMethodChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setcellPhone(event.target.value);
-  };
-
-  const handleEmailChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setEmail(event.target.value);
-  };
-  const handleHoursChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setHours(event.target.value);
-  };
-
- 
-
-  const handleSubmit = () => {
-    console.log('Form data:', {
-      taskDescription,
-    });
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("Form data:", formData);
   };
 
   return (
     <main className="container">
       <h1 className="heading">Fill in the details of the services you offer</h1>
-      <textarea
-        className="textarea"
-        placeholder="Service Provider name"
-        value={providerName}
-        onChange={handleProviderChange}
-      />
-      <textarea
-        className="textarea"
-        placeholder="Give a short description of the service you offer"
-        value={taskDescription}
-        onChange={handleTaskDescriptionChange}
-      />
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="providerName">Service Provider Name</label>
+        <input
+          type="text"
+          id="providerName"
+          name="providerName"
+          placeholder="Service Provider name"
+          value={formData.providerName}
+          onChange={handleChange}
+        />
 
-      <textarea
-        className="textarea"
-        placeholder="Telephone number"
-        value={cellPhone}
-        onChange={handleContactMethodChange}
-      />
+        <label htmlFor="taskDescription">Service Description</label>
+        <textarea
+          id="taskDescription"
+          name="taskDescription"
+          placeholder="Give a short description of the service you offer"
+          value={formData.taskDescription}
+          onChange={handleChange}
+        />
 
-      <textarea
-        className="textarea"
-        placeholder="Personal/Company Email"
-        value={email}
-        onChange={handleEmailChange}
-      />
+        <label htmlFor="cellPhone">Phone Number</label>
+        <input
+          type="tel"
+          id="cellPhone"
+          name="cellPhone"
+          placeholder="Phone number"
+          value={formData.cellPhone}
+          onChange={handleChange}
+          maxLength={10}
+        />
 
-      <textarea
-        className="textarea"
-        placeholder="Operating hours"
-        value={hours}
-        onChange={handleHoursChange}
-      />
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Personal/Company Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
 
-      <button className="button" onClick={handleSubmit}>Send Booking</button>
+        <label htmlFor="hours">Operating Hours</label>
+        <input
+          type="text"
+          id="hours"
+          name="hours"
+          placeholder="Operating hours"
+          value={formData.hours}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="serviceType">Service Type</label>
+        <select
+          id="serviceType"
+          name="serviceType"
+          value={formData.serviceType}
+          onChange={handleServiceTypeChange}
+        >
+          <option value="Water">Water</option>
+          <option value="Soil">Soil</option>
+        </select>
+
+        <button className="button" type="submit">
+          Send Booking
+        </button>
+      </form>
     </main>
   );
 };
