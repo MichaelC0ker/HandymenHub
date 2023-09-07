@@ -59,7 +59,7 @@ class UserController {
       createUser = async (req: Request, res: Response) => {
         try {
           const { email, guid } = req.body;
-          const results = await db.query("INSERT INTO users(email,guid) VALUES($1,$2) RETURNING *;", [email,guid]);
+          const results = await db.query("INSERT INTO users(email,guid) VALUES($1,$2) ON CONFLICT DO NOTHING RETURNING *;", [email,guid]);
           res.status(201).send(`User added with ID: ${results.rows[0].user_id}`);
     
         } catch (err: any) {
