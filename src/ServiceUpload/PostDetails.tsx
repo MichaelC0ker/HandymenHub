@@ -16,7 +16,7 @@ const PostDetails: React.FC = () => {
     setproviderName(event.target.value);
   };
 
-  
+
   const handleContactMethodChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setcellPhone(event.target.value);
   };
@@ -28,12 +28,80 @@ const PostDetails: React.FC = () => {
     setHours(event.target.value);
   };
 
- 
+  function getUserID(){
+    const userID = localStorage.getItem("guid");
+    const url = `https://rxkz2qmrji.eu-west-1.awsapprunner.com/users/${userID}`;
+    const token = localStorage.getItem("JWT");
+  
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer ${token}`);
+    headers.append('Content-Type', 'application/json');
+  
+    const requestOptions: RequestInit = {
+      method: 'GET',
+      headers: headers
+    };
+  
+    fetch(url, requestOptions)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Request failed with status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        handleSubmit(data.data[0].user_id);
+        return data.data[0].user_id;
+      })
+      .catch((error) => {
+        console.error('Fetch error:', error);
+        return "";
+      });
+  }
 
-  const handleSubmit = () => {
-    console.log('Form data:', {
-      taskDescription,
-    });
+  function handleSubmit(userId: string) {
+    const url = 'https://rxkz2qmrji.eu-west-1.awsapprunner.com/adverts';
+    const token = localStorage.getItem("JWT");
+    const owner = parseInt(userId);
+    console.log("Final user id: " + owner);
+    const requestData = {
+      "owner":owner,
+      "advert_data":
+        [
+          {
+            "title": "providerName",
+            "image": "Carpentry",
+            "category": "Carpentry",
+            "rating": 4,
+            "price": 450,
+            "verified": true,
+            "slogan": "Crafting Spaces, Building Dreams.",
+            "description": "taskDescription"
+           }
+        ]
+    };
+
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer ${token}`);
+    headers.append('Content-Type', 'application/json');
+
+    const requestOptions: RequestInit = {
+      method: 'POST',
+      body: JSON.stringify(requestData),
+      headers: headers
+    };
+
+    console.log(requestOptions)
+
+    fetch(url, requestOptions)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Request failed with status: ${response.status}`);
+        }
+        return response;
+      })
+
+
   };
 
   return (
@@ -73,7 +141,7 @@ const PostDetails: React.FC = () => {
         onChange={handleHoursChange}
       />
 
-      <button className="button" onClick={handleSubmit}>Send Booking</button>
+      <button className="button" type="button" onClick={()=>{getUserID()}}>Send Booking</button>
     </main>
   );
 };
