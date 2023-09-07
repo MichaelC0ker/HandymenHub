@@ -20,20 +20,25 @@ interface HandymanJob {
   verified: boolean;
 }
 
-const [getAdvertList, setAdvertList] = useState([]);
-const url = 'https://rxkz2qmrji.eu-west-1.awsapprunner.com/adverts';
-const token = localStorage.getItem("JWT");
-
-const headers = new Headers();
-headers.append('Authorization', `Bearer ${token}`);
-headers.append('Content-Type', 'application/json');
-
-const requestOptions: RequestInit = {
-  method: 'GET',
-  headers: headers,
+interface AdvertResponse {
+  advert_data: HandymanJob[];
+  owner: number;
+  advert_id: number
 };
 
-async function getAdverts(): Promise<any> {
+function getAdverts(setAdvertList: any) {
+  const url = 'https://rxkz2qmrji.eu-west-1.awsapprunner.com/adverts';
+  const token = localStorage.getItem("JWT");
+
+  const headers = new Headers();
+  headers.append('Authorization', `Bearer ${token}`);
+  headers.append('Content-Type', 'application/json');
+
+  const requestOptions: RequestInit = {
+    method: 'GET',
+    headers: headers,
+  };
+
   fetch(url, requestOptions)
     .then((response) => {
       if (!response.ok) {
@@ -42,7 +47,8 @@ async function getAdverts(): Promise<any> {
       return response.json();
     })
     .then((data) => {
-      setAdvertList(data);
+      console.log(data);
+      setAdvertList(data.data);
     })
     .catch((error) => {
       console.error('Fetch error:', error);
@@ -51,12 +57,18 @@ async function getAdverts(): Promise<any> {
 }
 
 const Jobs: React.FC = () => {
+  const [getAdvertList, setAdvertList] = useState<AdvertResponse[]>([]);
+
+  getAdverts(setAdvertList);
+
   return (
-    <main className="jobs-container" onLoad={getAdverts()}>
+
+    <main className="jobs-container">
       <section className="job-tiles">
-        {getAdvertList.map(job => (
-          <JobTile key={job.id} title={job.title} image={job.image} slogan={job.slogan} description={job.description} rating={job.rating} price={job.price} verified={job.verified} category={job.category} />
-        ))}
+        {getAdvertList.map(job => {
+          let resp = job.advert_data[0];
+          return  <JobTile key={job.advert_id} title={resp.title} image={resp.image} slogan={resp.slogan} description={resp.description} rating={resp.rating} price={resp.price} verified={resp.verified} category={resp.category} />
+        })}
       </section>
     </main>
   );
