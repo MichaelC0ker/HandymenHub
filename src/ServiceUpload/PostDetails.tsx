@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./PostDetails.css"; // Import your CSS file
+import "./PostDetails.css"; 
 
 interface PostDetailsProps {}
 
@@ -9,8 +9,9 @@ const PostDetails: React.FC<PostDetailsProps> = () => {
     taskDescription: "",
     cellPhone: "",
     email: "",
-    hours: "",
-    serviceType: "Water",
+    openHours: "",
+    closeHours: "", 
+    serviceType: "Plumbing",
   });
 
   const handleChange = (
@@ -82,14 +83,26 @@ const PostDetails: React.FC<PostDetailsProps> = () => {
           onChange={handleChange}
         />
 
-        <label htmlFor="hours">Operating Hours</label>
+        <label htmlFor="openHours">Start Time:</label>
         <input
-          type="text"
-          id="hours"
-          name="hours"
-          placeholder="Operating hours"
-          value={formData.hours}
+          type="time"
+          id="openHours"
+          name="openHours"
+          placeholder="Start Time"
+          value={formData.openHours}
           onChange={handleChange}
+          required
+        />
+
+        <label htmlFor="closeHours">Closing Time:</label>
+        <input
+          type="time"
+          id="closeHours"
+          name="closeHours"
+          placeholder="Closing Time"
+          value={formData.closeHours}
+          onChange={handleChange}
+          required
         />
 
         <label htmlFor="serviceType">Service Type</label>
@@ -99,8 +112,14 @@ const PostDetails: React.FC<PostDetailsProps> = () => {
           value={formData.serviceType}
           onChange={handleServiceTypeChange}
         >
-          <option value="Water">Water</option>
-          <option value="Soil">Soil</option>
+          <option value="Plumbing">Plumbing</option>
+          <option value="Electrical Repairs">Electrical Repairs</option>
+          <option value="Electrical Repairs">Electrical Repairs</option>
+          <option value="Carpentry">Carpentry</option>
+          <option value="Painting and Decorating">Painting and Decorating</option>
+          <option value="Pool Work">Pool Work</option>
+          <option value="Gardening">Gardening</option>
+
         </select>
 
         <button className="button" type="submit">
