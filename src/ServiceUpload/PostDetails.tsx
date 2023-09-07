@@ -28,8 +28,8 @@ const PostDetails: React.FC = () => {
     setHours(event.target.value);
   };
 
-  function getUserID(): string{
-    const userID = localStorage.get("guid");
+  function getUserID(){
+    const userID = localStorage.getItem("guid");
     const url = `https://rxkz2qmrji.eu-west-1.awsapprunner.com/users/${userID}`;
     const token = localStorage.getItem("JWT");
   
@@ -50,37 +50,36 @@ const PostDetails: React.FC = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("brooooooooo");
-        return console.log(data.data[0].user_id);
+        handleSubmit(data.data[0].user_id);
+        return data.data[0].user_id;
       })
       .catch((error) => {
         console.error('Fetch error:', error);
+        return "";
       });
-
-      return "";
   }
 
-  function handleSubmit() {
+  function handleSubmit(userId: string) {
     const url = 'https://rxkz2qmrji.eu-west-1.awsapprunner.com/adverts';
     const token = localStorage.getItem("JWT");
-    const owner = getUserID()
-    const userID =  getUserID();
+    const owner = parseInt(userId);
+    console.log("Final user id: " + owner);
     const requestData = {
-      "owner":userID,
+      "owner":owner,
       "advert_data":
         [
           {
-            "title": providerName,
+            "title": "providerName",
             "image": "Carpentry",
             "category": "Carpentry",
             "rating": 4,
             "price": 450,
             "verified": true,
             "slogan": "Crafting Spaces, Building Dreams.",
-            "description": taskDescription
+            "description": "taskDescription"
            }
         ]
-    }
+    };
 
     const headers = new Headers();
     headers.append('Authorization', `Bearer ${token}`);
@@ -92,19 +91,16 @@ const PostDetails: React.FC = () => {
       headers: headers
     };
 
+    console.log(requestOptions)
+
     fetch(url, requestOptions)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Request failed with status: ${response.status}`);
         }
-        return response.json();
+        return response;
       })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error('Fetch error:', error);
-      });
+
 
   };
 
@@ -145,7 +141,7 @@ const PostDetails: React.FC = () => {
         onChange={handleHoursChange}
       />
 
-      <button className="button" type="button" onClick={()=>{handleSubmit}}>Send Booking</button>
+      <button className="button" type="button" onClick={()=>{getUserID()}}>Send Booking</button>
     </main>
   );
 };

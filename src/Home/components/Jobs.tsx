@@ -67,7 +67,7 @@ const Jobs: React.FC = () => {
       <section className="job-tiles">
         {getAdvertList.map(job => {
           let resp = job.advert_data[0];
-          return  <JobTile key={job.advert_id} title={resp.title} image={resp.image} slogan={resp.slogan} description={resp.description} rating={resp.rating} price={resp.price} verified={resp.verified} category={resp.category} />
+          return <JobTile key={job.advert_id} title={resp.title} image={resp.image} slogan={resp.slogan} description={resp.description} rating={resp.rating} price={resp.price} verified={resp.verified} category={resp.category} />
         })}
       </section>
     </main>
