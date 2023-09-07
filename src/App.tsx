@@ -45,7 +45,9 @@ function App() {
         "JWT",
         res.signInUserSession.getAccessToken().getJwtToken()
       );
-      console.log(res.attributes);
+      localStorage.setItem("guid",res.attributes.sub);
+      localStorage.setItem("email",res.attributes.email);
+
       let body = {
         email: res.attributes.email,
         guid: res.attributes.sub,

@@ -36,7 +36,7 @@ function getAdverts(setAdvertList: any) {
 
   const requestOptions: RequestInit = {
     method: 'GET',
-    headers: headers,
+    headers: headers
   };
 
   fetch(url, requestOptions)
