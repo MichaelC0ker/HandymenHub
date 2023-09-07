@@ -45,6 +45,20 @@ function App() {
         "JWT",
         res.signInUserSession.getAccessToken().getJwtToken()
       );
+      console.log(res.attributes);
+      let body = {
+        email: res.attributes.email,
+        guid: res.attributes.sub,
+      };
+      fetch("https://rxkz2qmrji.eu-west-1.awsapprunner.com/users", {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: "Bearer " + localStorage.getItem("JWT"),
+        },
+      }).then((res) => console.log(res));
     });
     return (
       <>
