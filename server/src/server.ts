@@ -12,7 +12,7 @@ dotenv.config();
 const port = process.env.PORT;
 
 const corsOptions = {
-  origin: "https://d2lw6hatpihvdj.cloudfront.net/",
+  origin: "https://d2lw6hatpihvdj.cloudfront.net",
 };
 
 const app = new App({
