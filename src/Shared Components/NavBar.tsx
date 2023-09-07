@@ -1,5 +1,6 @@
 import React from "react";
 import "./NavBar.css";
+import { Auth } from "aws-amplify";
 
 interface NavbarProps {
   setComponent: (arg0: string) => void;
@@ -7,8 +8,17 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ setComponent, signOut }) => {
-  const handleLogout = () => {
-    setComponent("logout");
+  const handleLogout = (event: any) => {
+    event.preventDefault();
+    setTimeout(async () => {
+      try {
+        await Auth.signOut();
+        window.location.href = "/";
+      } catch (error) {
+        console.log("error signing out: ", error);
+        event.preventDefault();
+      }
+    });
   };
 
   return (
@@ -28,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ setComponent, signOut }) => {
           </button>
         </li>
         <li>
-          <button className="site-title" onClick={signOut}>
+          <button className="site-title" onClick={handleLogout}>
             Log Out
           </button>
         </li>
