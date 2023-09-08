@@ -60,7 +60,7 @@ const PostDetails: React.FC = () => {
       });
   }
 
-  function getImage(){
+  function getImage():string{
     var picList:string[]=["../Assets/carpentry.jpeg","../Assets/electrical.jpeg","../painting.jpeg"];
     return picList[Math.floor(Math.random() * 3)];
   }
