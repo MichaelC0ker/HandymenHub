@@ -78,7 +78,7 @@ const PostDetails: React.FC = () => {
         [
           {
             "title": providerName,
-            "image":  getImage(),
+            "image":  "image",
             "category": "Carpentry",
             "rating": 4,
             "price": 450,
