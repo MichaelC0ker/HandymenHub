@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './PostDetails.css';
 import carpentryImg from '../Assets/carpentry.jpeg' 
 import electricalImg from "../Assets/electrical.jpeg"
-import paintingImg from "../painting.jpeg"
+import paintingImg from "../Assets/painting.jpeg"
 
 const PostDetails: React.FC = () => {
   const [taskDescription, setTaskDescription] = useState('');

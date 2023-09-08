@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Jobs.css';
 import Plumbing from '../../Assets/plumbing.jpeg';
 import electrical from '../../Assets/electrical.jpeg';
+import defaultImg from '../../Assets/default.jpg'
 import carpentry from '../../Assets/carpentry.jpeg';
 import gardening from '../../Assets/gardening.jpeg';
 import pool from '../../Assets/pool.jpeg';
@@ -25,6 +26,8 @@ interface AdvertResponse {
   owner: number;
   advert_id: number
 };
+
+const defaultImgArr = [defaultImg,carpentry,pool]
 
 function getAdverts(setAdvertList: any) {
   const url = 'https://rxkz2qmrji.eu-west-1.awsapprunner.com/adverts';
@@ -60,14 +63,13 @@ const Jobs: React.FC = () => {
   const [getAdvertList, setAdvertList] = useState<AdvertResponse[]>([]);
 
   getAdverts(setAdvertList);
-
   return (
 
     <main className="jobs-container">
       <section className="job-tiles">
         {getAdvertList.map(job => {
           let resp = job.advert_data[0];
-          return <JobTile key={job.advert_id} title={resp.title} image={resp.image} slogan={resp.slogan} description={resp.description} rating={resp.rating} price={resp.price} verified={resp.verified} category={resp.category} />
+        return <JobTile key={job.advert_id} title={resp.title} image={defaultImgArr[Math.floor(Math.random()*3)]} slogan={resp.slogan} description={resp.description} rating={resp.rating} price={resp.price} verified={resp.verified} category={resp.category} />
         })}
       </section>
     </main>
