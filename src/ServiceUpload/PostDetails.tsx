@@ -62,7 +62,7 @@ const PostDetails: React.FC = () => {
 
   function getImage(){
     var picList:string[]=["../Assets/carpentry.jpeg","../Assets/electrical.jpeg","../painting.jpeg"];
-    return picList[3*Math.random()];
+    return picList[Math.floor(Math.random() * 3)];
   }
   
   function handleSubmit(userId: string) {
