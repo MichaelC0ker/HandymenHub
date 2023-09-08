@@ -93,8 +93,6 @@ const PostDetails: React.FC = () => {
       ],
     };
     
-    console.log(requestData);
-
     const headers = new Headers();
     headers.append("Authorization", `Bearer ${token}`);
     headers.append("Content-Type", "application/json");
