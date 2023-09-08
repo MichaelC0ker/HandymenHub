@@ -12,15 +12,12 @@ dotenv.config();
 const port = process.env.PORT;
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://d2lw6hatpihvdj.cloudfront.net",
 };
 
 const app = new App({
   port: Number(port),
-  controllers: [
-    new UsersController(),
-    new AdvertsController()
-  ],
+  controllers: [new UsersController(), new AdvertsController()],
   middleWares: [
     bodyParser.json(),
     bodyParser.urlencoded({ extended: true }),

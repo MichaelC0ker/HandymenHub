@@ -28,11 +28,6 @@ const Navbar: React.FC<NavbarProps> = ({ setComponent, signOut }) => {
       </button>
       <ul>
         <li>
-          <button onClick={() => setComponent("")} className="site-title">
-            My Services
-          </button>
-        </li>
-        <li>
           <button onClick={() => setComponent("post")} className="site-title">
             Post Details
           </button>
