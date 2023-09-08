@@ -20,8 +20,7 @@ const JobTile: React.FC<JobTileProps> = ({
   price,
   rating,
   category,
-  verified
-  
+  verified,
 }) => {
 
 
