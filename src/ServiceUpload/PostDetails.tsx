@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './PostDetails.css';
-
+import carpentryImg from '../Assets/carpentry.jpeg' 
+import electricalImg from "../Assets/electrical.jpeg"
+import paintingImg from "../painting.jpeg"
 
 const PostDetails: React.FC = () => {
   const [taskDescription, setTaskDescription] = useState('');
@@ -61,7 +63,7 @@ const PostDetails: React.FC = () => {
   }
 
   function getImage():string{
-    var picList:string[]=["../Assets/carpentry.jpeg","../Assets/electrical.jpeg","../painting.jpeg"];
+    var picList:string[]=[carpentryImg,electricalImg,paintingImg];
     return picList[Math.floor(Math.random() * 3)];
   }
   
