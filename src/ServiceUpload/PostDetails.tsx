@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import './PostDetails.css';
 import carpentryImg from '../Assets/carpentry.jpeg' 
 import electricalImg from "../Assets/electrical.jpeg"
 import paintingImg from "../Assets/painting.jpeg"
-=======
-import React, { useState } from "react";
 import "./PostDetails.css";
->>>>>>> 5e76d351050b1fb77d4bbd8371ba736de08d4ef5
 
 const PostDetails: React.FC = () => {
   const [taskDescription, setTaskDescription] = useState("");
@@ -89,26 +85,6 @@ const PostDetails: React.FC = () => {
     const url = "https://rxkz2qmrji.eu-west-1.awsapprunner.com/adverts";
     const token = localStorage.getItem("JWT");
     const owner = parseInt(userId);
-<<<<<<< HEAD
-    console.log("Final user id: " + owner);
-    const requestData = {
-      "owner":owner,
-      "advert_data":
-        [
-          {
-            "title": providerName,
-            "image":  "image",
-            "category": "Carpentry",
-            "rating": 4,
-            "price": 450,
-            "verified": true,
-            "slogan": "Crafting Spaces, Building Dreams.",
-            "description": taskDescription
-           }
-        ]
-    };
-=======
->>>>>>> 5e76d351050b1fb77d4bbd8371ba736de08d4ef5
 
     const requestData = {
       owner: owner,
