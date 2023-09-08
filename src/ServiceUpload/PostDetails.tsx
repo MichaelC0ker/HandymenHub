@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './PostDetails.css';
 
+
 const PostDetails: React.FC = () => {
   const [taskDescription, setTaskDescription] = useState('');
   const [providerName, setproviderName] = useState('');
@@ -59,6 +60,11 @@ const PostDetails: React.FC = () => {
       });
   }
 
+  function getImage(){
+    var picList:string[]=["../Assets/carpentry.jpeg","../Assets/electrical.jpeg","../painting.jpeg"];
+    return picList[3*Math.random()];
+  }
+  
   function handleSubmit(userId: string) {
     const url = 'https://rxkz2qmrji.eu-west-1.awsapprunner.com/adverts';
     const token = localStorage.getItem("JWT");
@@ -69,14 +75,14 @@ const PostDetails: React.FC = () => {
       "advert_data":
         [
           {
-            "title": "providerName",
-            "image": "Carpentry",
+            "title": providerName,
+            "image":  getImage(),
             "category": "Carpentry",
             "rating": 4,
             "price": 450,
             "verified": true,
             "slogan": "Crafting Spaces, Building Dreams.",
-            "description": "taskDescription"
+            "description": taskDescription
            }
         ]
     };
